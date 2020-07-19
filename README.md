@@ -7,7 +7,7 @@
 
 ## 安裝方式 
 1.開啟終端機，進入至欲儲存此專案的資料夾，並clone此專案
-`git clone https://github.com/chubbyKay/restaurant_list.git`
+`git clone https://github.com/ChubbyKay/restaurant_list.git`
 
 2. 切換至專案資料夾
 `cd restaurant_list `
