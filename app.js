@@ -12,7 +12,7 @@ mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true,
 const db = mongoose.connection
 
 db.on('error', () => {
-  console.log('mongodb error!')
+  console.error('mongodb error!')
 })
 
 db.once('open', () => {

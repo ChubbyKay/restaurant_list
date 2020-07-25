@@ -11,7 +11,7 @@ const restaurantSchema = new Schema({
   google_map: String,
   rating: { type: Number, min: 1, max: 5 },
   description: String,
-  required: true
+  required: false
 })
 
 module.exports = mongoose.model('Restaurant', restaurantSchema)
