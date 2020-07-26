@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h2 class="create-restaurant-page">新增餐廳</h2>
+
+  <div class="container m-5">
+    <div class="row nowrap">
+      <form action="/restaurants" method="POST">
+
+        <label for="name">餐廳名稱:</label>
+        <input type="text" placeholder="鼎泰豐" id="name" name="name"><br><br>
+        <label for="name＿en">英文名稱:</label>
+        <input type="text" id="name＿en" placeholder="Din Tai Fung" name="name＿en"><br><br>
+        <label for="category">餐飲分類:</label>
+        <input type="text" id="category" placeholder="中式餐廳" name="category"><br><br>
+        <label for="image">圖片網址:</label>
+        <input type="text" id="image" name="image"><br><br>
+        <label for="location">餐廳地址:</label>
+        <input type="text" id="location" placeholder="台北市信義路二段194號" name="location"><br><br>
+        <label for="phone">聯絡電話:</label>
+        <input type="text" id="phone" placeholder="02-2321-8928" name="phone"><br><br>
+        <label for="google_map">google map網址:</label>
+        <input type="text" id="google_map" name="google_map"><br><br>
+        <label for="rating">餐廳評價:</label>
+        <input type="text" id="rating" placeholder="1~5" name="rating"><br><br>
+        <label for="description">餐廳簡述:</label>
+        <textarea class="form-control" name="description" placeholder="請輸入餐廳介紹"
+          style="height: 150px"></textarea><br><br>
+
+        <button type="submit">新增</button>
+      </form>
+    </div>
+  </div>
+</div>

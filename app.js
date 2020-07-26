@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
+
 const restaurantList = require('./models/seeds/restaurant.json')
 const Restaurant = require('./models/restaurant')
 
@@ -25,7 +27,10 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
+  // console.log(req.body)
   Restaurant.find()
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
@@ -33,6 +38,20 @@ app.get('/', (req, res) => {
   // res.render('index', { restaurant: restaurantList.results })
 })
 
+// new page
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+// create
+app.post('/restaurants', (req, res) => {
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+// search
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const restaurants = restaurantList.results.filter((restaurant) => {
