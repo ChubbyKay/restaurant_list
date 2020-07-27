@@ -93,16 +93,20 @@ app.post('/restaurants/:id/delete', (req, res) => {
 // search
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter((restaurant) => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  })
-  res.render('index', { restaurant: restaurants, keyword: keyword })
+  return Restaurant.find({ name: { $regex: keyword, $options: "i" } })
+    .lean()
+    .then(restaurant => res.render('index', { restaurant }))
+    .catch(error => console.log(error))
+  // const restaurants = restaurantList.results.filter((restaurant) => {
+  //   return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+  // // })
+  // res.render('index', { restaurant: restaurants, keyword: keyword })
 })
 
-app.get('/restaurants/:id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant })
-})
+// app.get('/restaurants/:id', (req, res) => {
+//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
+//   res.render('show', { restaurant })
+// })
 
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)
