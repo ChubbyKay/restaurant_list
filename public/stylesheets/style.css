@@ -54,6 +54,11 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+.card img:hover {
+  transition: 0.3s;
+  opacity: 0.7;
+}
+
 .card img{
   height: 180px;
 }
