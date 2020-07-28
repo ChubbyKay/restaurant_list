@@ -54,13 +54,4 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// search
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  return Restaurant.find({ name: { $regex: keyword, $options: "i" } })
-    .lean()
-    .then(restaurant => res.render('index', { restaurant }))
-    .catch(error => console.log(error))
-})
-
 module.exports = router

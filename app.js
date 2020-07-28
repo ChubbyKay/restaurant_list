@@ -21,6 +21,15 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)
 
+//search
+// app.get('/search', (req, res) => {
+//   const keyword = req.query.keyword
+//   return Restaurant.find({ name: { $regex: keyword, $options: "i" } })
+//     .lean()
+//     .then(restaurant => res.render('index', { restaurant }))
+//     .catch(error => console.log(error))
+// })
+
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)
 })

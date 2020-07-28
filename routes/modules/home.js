@@ -11,5 +11,14 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+//search
+router.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  return Restaurant.find({ name: { $regex: keyword, $options: "i" } })
+    .lean()
+    .then(restaurant => res.render('index', { restaurant }))
+    .catch(error => console.log(error))
+})
+
 module.exports = router
 
