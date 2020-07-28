@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 const restaurantList = require('./models/seeds/restaurant.json')
 const Restaurant = require('./models/restaurant')
@@ -28,6 +29,8 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
   // console.log(req.body)
@@ -70,7 +73,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // edit -> update
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => {
@@ -82,7 +85,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // delete
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
@@ -97,16 +100,7 @@ app.get('/search', (req, res) => {
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.log(error))
-  // const restaurants = restaurantList.results.filter((restaurant) => {
-  //   return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  // // })
-  // res.render('index', { restaurant: restaurants, keyword: keyword })
 })
-
-// app.get('/restaurants/:id', (req, res) => {
-//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-//   res.render('show', { restaurant })
-// })
 
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)

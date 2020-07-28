@@ -3,7 +3,7 @@
 
   <div class="container m-5">
     <div class="row nowrap">
-      <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+      <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
 
         <label for="name">餐廳名稱:</label>
         <input type="text" placeholder="鼎泰豐" id="name" name="name" value="{{ restaurant.name }}"><br><br>
