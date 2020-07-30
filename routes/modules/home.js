@@ -46,30 +46,5 @@ router.get('/sort/:type/:mode', (req, res) => {
 })
 
 
-// const sortOption = {
-//   ascend: 'A -> Z',
-//   descend: 'Z -> A',
-//   category: '類別',
-//   location: '地區'
-// }
-
-// const optionAscend = document.getElementById('ascend')
-// const optionDescend = document.getElementById('descend')
-// const optionCategory = document.getElementById('category')
-// const optionLocation = document.getElementById('location')
-
-// function sortSelected() {
-//   if (optionAscend) {
-//     return `${sortOption.ascend}`
-//   } else if (optionDescend) {
-//     return `${sortOption.descend}`
-//   } else if (optionCategory) {
-//     return `${sortOption.category}`
-//   } else {
-//     return `${sortOption.location}`
-//   }
-
-// }
-
 module.exports = router
 
