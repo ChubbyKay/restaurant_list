@@ -25,29 +25,26 @@ router.get('/search', (req, res) => {
 
 // sort
 router.get('/sort/:type/:mode', (req, res) => {
-  const sortType = {
-    name: '餐廳名稱',
-    category: '類別',
-    location: '地區'
-  }
-
-  const sortMode = {
-    asc: 'A -> Z',
-    desc: 'Z -> A',
-  }
 
   const type = req.params.type
   const mode = req.params.mode
   // console.log('type 值：', type, ', mode值:', mode)
-  const sortOption = `${sortType[type]}:${sortMode[mode]}`
 
+  const sortOption = {
+    name_asc: 'A -> Z',
+    name_desc: 'Z -> A',
+    category_asc: '類別',
+    location_asc: '地區'
+  }
 
+  const sortSelected = `${type}_${mode}`
   return Restaurant.find()
     .lean()
     .sort({ [type]: [mode] })
-    .then(restaurant => res.render('index', { restaurant, sortOption }))
+    .then(restaurant => res.render('index', { restaurant, sortOption: sortOption[sortSelected] }))
     .catch(error => console.log(error))
 })
+
 
 // const sortOption = {
 //   ascend: 'A -> Z',
