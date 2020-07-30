@@ -2,7 +2,7 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
+      <form action="/search" id="search-bar">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
@@ -15,6 +15,34 @@
     </div>
   </div>
 </div>
+
+<!-- sort -->
+<div class="container mt-3">
+  <div class="justify-content-start">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      排序
+      {{#if sortOption}} {{sortOption}}{{/if}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" id="ascend" href="/sort/name/asc" name="ascend"> A -> Z </a>
+      <a class="dropdown-item" id="descend" href="/sort/name/desc" name="descend"> Z -> A </a>
+      <a class="dropdown-item" id="category" href="/sort/category/asc" name="category">類別</a>
+      <a class="dropdown-item" id="location" href="/sort/location/asc" name="location">地區</a>
+    </div>
+  </div>
+</div>
+
+{{!-- <form action="/sort" method="GET">
+            <label class="mx-sm-2 sr-only" for="sortSelect">排序方式：</label>
+            <select class="sort-bar" name="sortSelect" id="sortSelect">
+              <option selected>排序...</option>
+              <option value="ascend"> A -> Z </option>
+              <option value="descend"> Z -> A </option>
+              <option value="category">類別</option>
+              <option value="local">地區</option>
+            </select>
+          </form> --}}
 
 <!-- restaurant list -->
 <div class="container mt-5">
