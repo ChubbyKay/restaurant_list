@@ -8,7 +8,6 @@ const document = require('../../views/index')
 router.get('/', (req, res) => {
   Restaurant.find()
     .lean()
-    // .sort({ _id: 'asc' })
     .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.error(error))
 })
@@ -27,7 +26,6 @@ router.get('/search', (req, res) => {
 router.get('/sort/:type/:mode', (req, res) => {
   const type = req.params.type
   const mode = req.params.mode
-  // console.log('type 值：', type, ', mode值:', mode)
 
   const sortOption = {
     name_asc: 'A -> Z',
