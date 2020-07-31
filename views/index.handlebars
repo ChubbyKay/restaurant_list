@@ -51,8 +51,8 @@
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
               </span>
-              <a href="./restaurants/{{ this._id }}/edit" class="btn btn-info">編輯</a>
-              <form action="./restaurants/{{this._id}}?_method=DELETE" method="POST" style="display:inline;">
+              <a href="/restaurants/{{ this._id }}/edit" class="btn btn-info">編輯</a>
+              <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" style="display:inline;">
                 <button type="submit" class="btn btn-warning">刪除</button>
               </form>
             </div>

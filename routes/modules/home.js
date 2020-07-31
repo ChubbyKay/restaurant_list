@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 const Restaurant = require('../../models/restaurant')
+const document = require('../../views/index')
 
 // 首頁載入頁面
 router.get('/', (req, res) => {
-  // console.log(req.param)
   Restaurant.find()
     .lean()
     // .sort({ _id: 'asc' })
@@ -25,7 +25,6 @@ router.get('/search', (req, res) => {
 
 // sort
 router.get('/sort/:type/:mode', (req, res) => {
-
   const type = req.params.type
   const mode = req.params.mode
   // console.log('type 值：', type, ', mode值:', mode)
@@ -36,15 +35,14 @@ router.get('/sort/:type/:mode', (req, res) => {
     category_asc: '類別',
     location_asc: '地區'
   }
-
   const sortSelected = `${type}_${mode}`
+
   return Restaurant.find()
     .lean()
     .sort({ [type]: [mode] })
     .then(restaurant => res.render('index', { restaurant, sortOption: sortOption[sortSelected] }))
     .catch(error => console.log(error))
 })
-
 
 module.exports = router
 
