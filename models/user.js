@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: false,
+    default: '已註冊用戶'
   },
   email: {
     type: String,

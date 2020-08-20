@@ -1,10 +1,9 @@
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
-const restaurantList = require('./models/seeds/restaurant.json')
-const Restaurant = require('./models/restaurant')
 const routes = require('./routes')
 
 require('./config/mongoose')
@@ -14,6 +13,12 @@ const port = 3000
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'Secret',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
