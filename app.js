@@ -28,6 +28,14 @@ app.use(methodOverride('_method'))
 
 usePassport(app)
 
+// 登入後的客製化顯示
+app.use((req, res, next) => {
+  // res.locals 是 express.js 的語法，意即放在 res.locals 的變數，在所有 views 都可使用
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user // req.user 是來自 passport 的反序列化時取出的
+  next()
+})
+
 app.use(routes)
 
 app.listen(port, () => {
