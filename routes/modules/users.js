@@ -22,25 +22,35 @@ router.get('/register', (req, res) => {
 // register feature
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
+  const errors = []
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: '請確實填寫 email、password、confirm password 欄位' })
+  } if (password !== confirmPassword) {
+    errors.push({ message: '請再次確認密碼' })
+  } // 若errors.length = true 代表上述判斷式有誤，則跳回 register 頁面
+  if (errors.length) {
+    return res.render('register', {
+      errors, name, email, password, confirmPassword
+    })
+  }
   User.findOne({ email }).then(user => {
     if (user) {
-      console.log('users already exists')
-      res.render('register', {
-        name, email, password, confirmPassword
+      errors.push({ message: '這個 Email 已經註冊過了' })
+      return res.render('register', {
+        errors, name, email, password, confirmPassword
       })
-    } else {
-      return User.create({
-        name, email, password
-      })
-        .then(() => res.redirect('/'))
-        .catch(err => console.log(err))
-    }
+    } return User.create({
+      name, email, password
+    })
+      .then(() => res.redirect('/'))
+      .catch(err => console.log(err))
   })
 })
 
 // logout 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('success_msg', '你已成功登出帳號 ：）')
   res.redirect('/users/login')
 })
 
