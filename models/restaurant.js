@@ -42,6 +42,16 @@ const restaurantSchema = new Schema({
   description: {
     type: String,
     required: false
+  },
+  // 加入關聯設定
+  userId: {
+    // type 跟 ref 為一組設定，意即「去參照 user model 的 ObjectId」 
+    // type 定義資料類型為 ObjectId ，意指連向另一個資料物件
+    type: Schema.Types.ObjectId,
+    // 參考對象是 user model 的資料
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 
