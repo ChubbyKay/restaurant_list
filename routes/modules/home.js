@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 const Restaurant = require('../../models/restaurant')
-const document = require('../../views/index')
 
 // 首頁載入頁面
 router.get('/', (req, res) => {
@@ -15,7 +14,6 @@ router.get('/', (req, res) => {
 // search
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  console.log(req.query.keyword)
   return Restaurant.find({ name: { $regex: keyword, $options: "i" } })
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
