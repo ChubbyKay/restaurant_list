@@ -4,7 +4,6 @@ const userSchema = new Schema({
   name: {
     type: String,
     required: false,
-    default: '已註冊用戶'
   },
   email: {
     type: String,
