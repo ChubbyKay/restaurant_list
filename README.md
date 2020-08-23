@@ -10,12 +10,12 @@
 ・使用者可依餐廳名稱順序、餐廳類型、地區等項目，排序餐廳呈現方式<br>
 
 ## 測試帳號
-  帳號 1：  
-    email: user1@example.com
-    password: 12345678
-  帳號 2：  
-    email: user2@example.com
-    password: 12345678
+  帳號 1：  <br>
+    email: user1@example.com<br>
+    password: 12345678<br>
+  帳號 2：  <br>
+    email: user2@example.com<br>
+    password: 12345678<br>
   
 ## 安裝方式 
 1. 開啟終端機，進入至欲儲存此專案的資料夾，並clone此專案
