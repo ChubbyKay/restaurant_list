@@ -15,7 +15,8 @@ router.get('/', (req, res) => {
 // search
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  return Restaurant.find({ name: { $regex: keyword, $options: "i" } })
+  const userId = req.user._id
+  return Restaurant.find({ name: { $regex: keyword, $options: "i" }, userId })
     .lean()
     .then(restaurant => res.render('index', { restaurant }))
     .catch(error => console.log(error))
@@ -34,7 +35,9 @@ router.get('/sort/:type/:mode', (req, res) => {
   }
   const sortSelected = `${type}_${mode}`
 
-  return Restaurant.find()
+  const userId = req.user._id
+
+  return Restaurant.find({ userId })
     .lean()
     .sort({ [type]: [mode] })
     .then(restaurant => res.render('index', { restaurant, sortOption: sortOption[sortSelected] }))
